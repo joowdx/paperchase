@@ -75,7 +75,6 @@ class EditUser extends EditRecord
 
     protected function getFormActions(): array
     {
-        // Hide save/cancel if the user is soft-deleted
         return $this->getRecord()->trashed() ? [] : parent::getFormActions();
     }
 }
