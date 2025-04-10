@@ -16,7 +16,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements HasAvatar, FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasUlids, HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, HasUlids, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -28,8 +28,9 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         'email',
         'password',
         'role',
-        'deactivated_at',
         'avatar',
+        'office_id',
+        'section_id',
     ];
 
     /**

@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('sections', function (Blueprint $table) {
@@ -19,12 +16,14 @@ return new class extends Migration
             $table->string('head_name');
             $table->string('designation');
             $table->timestamps();
+            $table->softDeletes();
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->ulid('section_id')->constrained('sections')->cascadeOnDelete()->change();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('sections');

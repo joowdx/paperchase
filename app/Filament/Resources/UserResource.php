@@ -4,8 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Enums\UserRole;
 use App\Filament\Resources\UserResource\Pages;
+use App\Models\Office;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -44,6 +46,18 @@ class UserResource extends Resource
                             ->options(UserRole::class)
                             ->required()
                             ->default(UserRole::USER->value),
+                        Select::make('office_id')
+                            ->label('Select Office')
+                            ->options(
+                                Office::all()->pluck('name', 'id')
+                            )
+                            ->required(), // Optional:
+                        // Forms\Components\TextInput::make('section_id')
+                        //     ->relationship('section', 'name')
+                        //     ->preload()
+                        //     ->required()
+                        //     ->searchable()
+                        //     ->placeholder('Select Section'),
                     ]),
             ]);
     }
