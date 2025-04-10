@@ -84,4 +84,10 @@ class User extends Authenticatable implements HasAvatar, FilamentUser
         return true;
         // return $this->role->canAccessPanel($panel);
     }
+
+    public function section()
+    {
+    return $this->belongsTo(Section::class);
+    }
+
 }

@@ -22,6 +22,11 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
+    public static function canViewAny(): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === UserRole::ROOT;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -51,13 +56,13 @@ class UserResource extends Resource
                             ->options(
                                 Office::all()->pluck('name', 'id')
                             )
-                            ->required(), // Optional:
-                        // Forms\Components\TextInput::make('section_id')
-                        //     ->relationship('section', 'name')
-                        //     ->preload()
-                        //     ->required()
-                        //     ->searchable()
-                        //     ->placeholder('Select Section'),
+                            ->required(),
+                        Forms\Components\Select::make('section_id')
+                            ->relationship('section', 'name')
+                            ->preload()
+                            ->required()
+                            ->searchable()
+                            ->placeholder('Select Section'),
                     ]),
             ]);
     }
