@@ -22,7 +22,7 @@ return new class extends Migration
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->ulid('office_id')->constrained('offices')->cascadeOnDelete()->change();
+            $table->ulid('office_id')->constrained('offices')->cascadeOnDelete()->nullable()->change();
         });
     }
 
