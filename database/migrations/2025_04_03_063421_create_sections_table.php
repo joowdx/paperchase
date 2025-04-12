@@ -13,8 +13,8 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->foreignIdFor(Office::class)->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('head_name');
-            $table->string('designation');
+            $table->string('head_name')->nullable();
+            $table->string('designation')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

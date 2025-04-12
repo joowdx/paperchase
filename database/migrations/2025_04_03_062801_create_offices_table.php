@@ -15,8 +15,8 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('acronym');
             $table->string('name');
-            $table->string('head_name');
-            $table->string('designation');
+            $table->string('head_name')->nullable();
+            $table->string('designation')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
