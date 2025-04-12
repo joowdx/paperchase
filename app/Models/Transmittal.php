@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Transmittal extends Model
 {
@@ -21,9 +22,12 @@ class Transmittal extends Model
         'from_user_id',
         'to_user_id',
         'remarks',
-        'date_sent',
-        'date_received',
+        'received_at',
         'pick_up',
+    ];
+
+    protected $casts = [
+        'received_at' => 'datetime',
     ];
 
     public function document(): BelongsTo
@@ -64,5 +68,10 @@ class Transmittal extends Model
     public function contents(): HasMany
     {
         return $this->hasMany(Content::class);
+    }
+
+    public function attachments(): MorphMany
+    {
+        return $this->morphMany(Attachment::class, 'attachable');
     }
 }
