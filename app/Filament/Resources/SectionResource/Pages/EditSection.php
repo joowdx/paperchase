@@ -20,9 +20,10 @@ class EditSection extends EditRecord
             ActionGroup::make([
                 DeleteAction::make()
                     ->requiresConfirmation()
-                    ->action(function (Section $record): void {
+                    ->before(function (Section $record) {
                         $record->delete();
                     })
+                    ->successRedirectUrl(fn () => static::getResource()::getUrl('index'))
                     ->color('danger')
                     ->label('Delete'),
                 Actions\Action::make('restore')
@@ -43,5 +44,10 @@ class EditSection extends EditRecord
                 ->label('Danger Actions')
                 ->icon('heroicon-o-ellipsis-vertical'),
         ];
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 }

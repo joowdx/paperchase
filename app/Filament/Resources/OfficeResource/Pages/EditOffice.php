@@ -20,11 +20,13 @@ class EditOffice extends EditRecord
             ActionGroup::make([
                 DeleteAction::make()
                     ->requiresConfirmation()
-                    ->action(function (Office $record): void {
+                    ->before(function (Office $record) {
                         $record->delete();
                     })
+                    ->successRedirectUrl(fn () => static::getResource()::getUrl('index'))
                     ->color('danger')
                     ->label('Delete'),
+
                 Actions\Action::make('restore')
                     ->label('Restore Office')
                     ->icon('heroicon-o-arrow-uturn-left')
@@ -43,5 +45,10 @@ class EditOffice extends EditRecord
                 ->label('Danger Actions')
                 ->icon('heroicon-o-ellipsis-vertical'),
         ];
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 }

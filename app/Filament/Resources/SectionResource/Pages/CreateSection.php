@@ -10,4 +10,9 @@ class CreateSection extends CreateRecord
     protected static string $resource = SectionResource::class;
 
     protected bool $createAnother = false;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

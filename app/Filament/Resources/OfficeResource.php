@@ -50,7 +50,6 @@ class OfficeResource extends Resource
                     ->label('Users')
                     ->searchable()
                     ->sortable(),
-
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make('trashed'),
