@@ -32,4 +32,9 @@ class Office extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }

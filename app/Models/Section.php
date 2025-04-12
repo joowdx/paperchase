@@ -28,4 +28,9 @@ class Section extends Model
     {
         return $this->hasMany(Document::class);
     }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 }
