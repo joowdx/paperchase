@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Envoyr</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#c83ebf',
+            dark: '#0f0f0f',
+            light: '#ffffff',
+            grayish: '#1f1f1f',
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
     @keyframes fadeInScale {
@@ -39,206 +55,210 @@
       z-index: 50;
     }
 
-    .light body {
+    /* Light theme overrides */
+    .light {
       background-color: white;
-      color: #1a202c; 
+      color: #1a202c;
     }
 
-    .light .bg-gray-50 {
-      background-color: rgb(226, 232, 237);
+    .light section,
+    .light .bg-dark,
+    .light .bg-gray-800,
+    .light .bg-gray-700 {
+      background-color: #f8f9fa !important;
+      color: #1a202c;
     }
 
-    .light .bg-white {
-      background-color: white;    
+    .light .text-gray-300 {
+      color:rgb(0, 0, 0) !important;
     }
 
-    .light .text-indigo-600 {
-      color: rgb(200, 62, 191); 
+    .light .text-primary {
+      color: #c83ebf !important;
     }
 
-    .light .border-indigo-600 {
-      border-color: #4f46e5;
+    .light .shadow,
+    .light .shadow-md,
+    .light .shadow-lg {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .light .hover\:bg-indigo-50:hover {
-      background-color: #eef2ff;
+    .light .bg-gradient-to-br,
+    .light .bg-gradient-to-r {
+      background: linear-gradient(to right, #fff, #e2e8f0) !important;
+    }
+
+    .light .bg-black,
+    .light .bg-dark {
+      background-color: #ffffff !important;
     }
 
     .light footer {
-      background-color: rgb(234, 60, 213);
-      color: black !important;
+      background-color: #f1f5f9 !important;
+      color: #1a202c !important;
     }
 
     .light footer a {
-      color: rgb(255, 255, 255);
+      color: #000000;
     }
 
     .light footer a:hover {
-      color: rgb(205, 205, 0); 
+      color: #c83ebf;
     }
   </style>
 </head>
+<body class="transition-colors duration-300 font-sans">
 
-<body class="bg-white text-gray-900 transition-colors duration-300 font-sans dark:bg-gray-600 dark:text-gray-100 light:bg-white light:text-gray-900">
-
-  <header class="flex justify-between items-center p-6 shadow-sm bg-gray-50 dark:bg-gray-800">
-    <h1 class="text-2xl font-bold text-indigo-600 dark:text-pink-400">Envoyr</h1>
-    <div class="flex items-center gap-4">
-  <!-- Theme Toggle Button -->
-  <button 
-    onclick="toggleLightMode()" 
-    aria-label="Toggle dark/light mode"
-    class="text-sm px-4 py-2 rounded border border-indigo-500 dark:border-pink-400 text-indigo-600 dark:text-pink-400 hover:bg-indigo-100 dark:hover:bg-pink-900 transition flex items-center gap-2"
-  >
-    <i id="theme-icon" class="fas fa-moon"></i>
-  </button>
-
-  <!-- Login Button -->
-  <button
-    class="text-sm px-4 py-2 rounded border border-indigo-500 dark:border-pink-400 text-indigo-600 dark:text-pink-400 hover:bg-indigo-100 dark:hover:bg-pink-900 transition"
-  >
-    Login
-  </button>
-
-  <!-- Sign Up Button -->
-  <button
-    class="text-sm px-4 py-2 rounded bg-indigo-600 text-white dark:bg-pink-500 dark:text-white hover:bg-indigo-700 dark:hover:bg-pink-600 transition"
-  >
-    Sign Up
-  </button>
-</div>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-dark shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-primary">Envoyr</h1>
+      <div class="flex items-center gap-4">
+        <button 
+          onclick="toggleLightMode()" 
+          aria-label="Toggle dark/light mode"
+          class="text-sm px-4 py-2 rounded border border-indigo-500 dark:border-pink-400 text-indigo-600 dark:text-pink-400 hover:bg-indigo-100 dark:hover:bg-pink-900 transition flex items-center gap-2"
+        >
+          <i id="theme-icon" class="fas fa-moon"></i>
+        </button>
+        <button class="text-sm px-4 py-2 border border-primary text-black dark:text-white rounded hover:bg-primary transition-colors duration-300">
+  Login
+</button>
+<button class="text-sm px-4 py-2 bg-primary text-white rounded hover:bg-pink-400 transition-colors duration-300">
+  Sign Up
+</button>
+      </div>
+    </div>
   </header>
 
-  <main class="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6 py-20 bg-white dark:bg-gray-700">
-    <div class="text-center md:text-left fade-in-scale">
-      <h2 class="text-8xl font-extrabold text-indigo-600 dark:text-pink-400">Envoyr</h2>
-      <p class="text-lg mt-4 max-w-md mx-auto md:mx-0">
-        Your seamless communication solution for modern document tracking.
-      </p>
-      <button class="mt-6 text-sm border border-indigo-600 dark:border-pink-400 text-indigo-600 dark:text-pink-400 px-6 py-2 rounded hover:bg-indigo-50 dark:hover:bg-pink-900 transition">
-        Learn More
-      </button>
+  <!-- Hero -->
+  <section class="min-h-screen bg-black text-white flex items-center justify-center px-6 py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-left">
+    <div class="max-w-3xl">
+      <h2 class="text-5xl md:text-7xl font-extrabold mb-6">Track Documents <span class="text-primary">Smarter</span></h2>
+      <p class="text-lg mb-8 text-gray-300">Envoyr makes document tracking seamless, efficient, and fully transparent—powered by smart QR codes.</p>
+      <a href="#features" class="bg-primary text-white px-6 py-3 rounded font-semibold text-lg hover:bg-pink-400 transition">Get Started</a>
     </div>
-
     <div class="fade-in-scale flex justify-center">
-    <img 
-  src="{{ asset('images/hero-docs.jpg') }}" 
-  alt="Person handling documents" 
-  class="w-[500px] md:w-[600px] lg:w-[700px] rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"
-          />
+      <img src="{{ asset('images/heroIMG1.webp') }}" alt="Person handling documents" class="w-[400px] md:w-[500px] lg:w-[600px] rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"/>
     </div>
-  </main>
+  </section>
 
-  <section class="py-20 px-6 bg-gray-50 dark:bg-gray-800">
-    <div class="text-center">
-      <h3 class="text-3xl font-semibold text-indigo-600 dark:text-pink-400">Features</h3>
+  <!-- Features -->
+  <section id="features" class="py-20 bg-dark px-6">
+    <div class="max-w-6xl mx-auto text-center mb-16">
+      <h3 class="text-4xl font-bold text-primary">Key Features</h3>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
-      <div class="p-6 bg-white dark:bg-gray-900 rounded-xl shadow hover:shadow-md transition text-center">
-        <i class="fas fa-file-alt text-4xl text-indigo-600 dark:text-pink-400"></i>
-        <h4 class="text-xl font-bold text-indigo-600 dark:text-pink-400 mt-4">Document Tracker</h4>
-        <p class="mt-2 text-sm">Monitor documents as they move through departments in real-time.</p>
+    <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div class="bg-black text-primary p-8 rounded-xl shadow-md hover:shadow-lg transition">
+        <i class="fas fa-file-alt text-4xl text-primary mb-4"></i>
+        <h4 class="text-xl font-bold mb-2">Document Tracker</h4>
+        <p class="text-gray-300">Monitor documents as they move across offices in real-time.</p>
       </div>
-      <div class="p-6 bg-white dark:bg-gray-900 rounded-xl shadow hover:shadow-md transition text-center">
-        <i class="fas fa-qrcode text-4xl text-indigo-600 dark:text-pink-400"></i>
-        <h4 class="text-xl font-bold text-indigo-600 dark:text-pink-400 mt-4">QR Code Integration</h4>
-        <p class="mt-2 text-sm">Assign a unique QR code to each document for secure, fast tracking.</p>
+      <div class="bg-black text-primary p-8 rounded-xl shadow-md hover:shadow-lg transition">
+        <i class="fas fa-qrcode text-4xl text-primary mb-4"></i>
+        <h4 class="text-xl font-bold mb-2">QR Code Integration</h4>
+        <p class="text-gray-300">Each document gets a unique, scannable code for fast updates.</p>
       </div>
-      <div class="p-6 bg-white dark:bg-gray-900 rounded-xl shadow hover:shadow-md transition text-center">
-        <i class="fas fa-map-marker-alt text-4xl text-indigo-600 dark:text-pink-400"></i>
-        <h4 class="text-xl font-bold text-indigo-600 dark:text-pink-400 mt-4">Location Status</h4>
-        <p class="mt-2 text-sm">Instantly view the current location and status of any document.</p>
+      <div class="bg-black text-primary p-8 rounded-xl shadow-md hover:shadow-lg transition">
+        <i class="fas fa-map-marker-alt text-4xl text-primary mb-4"></i>
+        <h4 class="text-xl font-bold mb-2">Live Location</h4>
+        <p class="text-gray-300">Know exactly where any document is—anytime, anywhere.</p>
       </div>
     </div>
   </section>
 
-  <section class="py-20 px-6">
-  <div class="text-center">
-    <h3 class="text-3xl font-semibold text-indigo-600 dark:text-pink-400">How It Works</h3>
-  </div>
-  <div class="mt-16 relative max-w-5xl mx-auto">
-    <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full border-l-2 border-indigo-300 dark:border-pink-400"></div>
-
-    <div class="mb-12 flex flex-col md:flex-row items-center md:justify-start relative">
-      <div class="w-full md:w-1/2 md:pr-8 text-center md:text-left">
-        <div class="inline-block w-full md:w-auto p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow">
-          <div class="flex justify-center md:justify-end mb-4">
-    
-            <svg class="w-12 h-12 text-indigo-600 dark:text-pink-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z" />
-              <path d="M14 2v6h6" />
-            </svg>
+  <!-- Steps -->
+  <section class="min-h-screen flex items-center justify-center px-6 py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl items-center">
+      <div class="flex justify-center">
+        <img src="{{ asset('images/HowItWorksIMG1.webp') }}" alt="Person handling documents" class="w-[400px] md:w-[500px] lg:w-[600px] rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"/>
+      </div>
+      <div class="space-y-6">
+        <h3 class="text-4xl font-bold text-primary text-center md:text-left">How It Works</h3>
+        <div class="flex bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+          <div class="bg-red-500 text-white w-20 flex flex-col items-center justify-center p-4">
+            <span class="text-3xl font-bold">01</span>
+            <span class="uppercase text-xs tracking-widest">Step</span>
           </div>
-          <h4 class="text-xl font-bold text-indigo-600 dark:text-pink-400">Step 1: Document Creation</h4>
-          <p class="mt-2 text-sm text-black-700 dark:text-white-700">A document is created and registered in the system by the originating office.</p>
+          <div class="p-6 text-primary text-left">
+            <h4 class="text-xl font-semibold">Create & Register</h4>
+            <p class="text-gray-300">Originating office creates and inputs the document into the system.</p>
+          </div>
+        </div>
+        <div class="flex bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+          <div class="bg-blue-500 text-white w-20 flex flex-col items-center justify-center p-4">
+            <span class="text-3xl font-bold">02</span>
+            <span class="uppercase text-xs tracking-widest">Step</span>
+          </div>
+          <div class="p-6 text-left">
+            <h4 class="text-xl text-primary font-semibold">Assign QR Code</h4>
+            <p class="text-gray-300">System generates a unique code for the document to enable fast scans.</p>
+          </div>
+        </div>
+        <div class="flex bg-gray-700 rounded-lg overflow-hidden shadow-lg">
+          <div class="bg-green-500 text-white w-20 flex flex-col items-center justify-center p-4">
+            <span class="text-3xl font-bold">03</span>
+            <span class="uppercase text-xs tracking-widest">Step</span>
+          </div>
+          <div class="p-6 text-left">
+            <h4 class="text-xl text-primary font-semibold">Track & Update</h4>
+            <p class="text-gray-300">QR code scans update the location and status in real-time.</p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="mb-12 flex flex-col md:flex-row items-center md:justify-end relative">
-      <div class="w-full md:w-1/2 md:pl-8 text-center md:text-left">
-        <div class="inline-block w-full md:w-auto p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow">
-          <div class="flex justify-center md:justify-start mb-4">
-            
-            <svg class="w-12 h-12 text-indigo-600 dark:text-pink-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path d="M3 3h5v5H3V3zm13 0h5v5h-5V3zM3 16h5v5H3v-5zm13 5v-5h-2m4 0h2v2m-2 2v2M13 3v10H3" />
-            </svg>
-          </div>
-          <h4 class="text-xl font-bold text-indigo-600 dark:text-pink-400">Step 2: QR Code Assignment</h4>
-          <p class="mt-2 text-sm text-black-700 dark:text-white-700">A unique QR code is generated and attached for seamless tracking.</p>
-        </div>
+  <!-- Testimonials -->
+  <section class="py-20 px-6 bg-dark">
+    <div class="max-w-4xl mx-auto text-center mb-10">
+      <h3 class="text-4xl font-bold text-primary mb-6">What Our Users Say</h3>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div class="bg-gray-800 p-6 rounded-xl shadow">
+        <p class="italic text-gray-300">"Envoyr revolutionized how we track documents. Fast, efficient, and totally stress-free!"</p>
+        <div class="mt-4 text-right font-semibold text-primary">– Jordan C., Registrar</div>
+      </div>
+      <div class="bg-gray-800 p-6 rounded-xl shadow">
+        <p class="italic text-gray-300">"The QR codes are genius. No more missing files!"</p>
+        <div class="mt-4 text-right font-semibold text-primary">– Aimee R., Admin Staff</div>
       </div>
     </div>
+  </section>
 
-    <div class="mb-12 flex flex-col md:flex-row items-center md:justify-start relative">
-      <div class="w-full md:w-1/2 md:pr-8 text-center md:text-left">
-        <div class="inline-block w-full md:w-auto p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow">
-          <div class="flex justify-center md:justify-end mb-4">
-            
-            <svg class="w-12 h-12 text-indigo-600 dark:text-pink-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path d="M4 4v6h6M20 20v-6h-6M20 4h-6v6M4 20h6v-6" />
-            </svg>
-          </div>
-          <h4 class="text-xl font-bold text-indigo-600 dark:text-pink-400">Step 3: Status Update</h4>
-          <p class="mt-2 text-sm text-black-700 dark:text-white-700">Receiving offices scan the QR to update the document's current location.</p>
-        </div>
-      </div>
+  <!-- CTA -->
+  <section class="bg-gradient-to-r from-primary to-pink-400 text-white py-20 text-center px-6">
+    <h3 class="text-4xl font-extrabold mb-4">Start Tracking Smarter Today</h3>
+    <p class="text-lg mb-6">Sign up now and streamline your document workflow with Envoyr.</p>
+    <a href="#" class="bg-white text-black dark:bg-black dark:text-white px-6 py-3 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors duration-300 font-semibold">
+  Create Free Account
+</a>
+
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6 py-20">
+    <h2 class="text-4xl font-bold mb-4">The tech <span class="text-p400">STACK</span></h2>
+    <p class="text-gray-400 max-w-xl text-center">The technologies we use to build this application. We use the latest technologies to build this application.</p>
+    <div class="mt-12 grid grid-cols-3 gap-4 place-items-center">
+      <div class="bg-gray-800 p-6 rounded-xl flex items-center justify-center w-24 h-24 shadow-lg"><img src="images/php-logo.png" alt="PHP" class="h-10"></div>
+      <div class="bg-gray-800 p-6 rounded-xl flex items-center justify-center w-24 h-24 shadow-lg"><img src="images/laravel_logo.png" alt="Laravel" class="h-10"></div>
+      <div class="bg-gray-800 p-6 rounded-xl flex items-center justify-center w-24 h-24 shadow-lg"><img src="images/filament-logo.jpg" alt="Filament" class="h-10"></div>
+      <div class="bg-gray-800 p-6 rounded-xl flex items-center justify-center w-24 h-24 shadow-lg"><img src="images/tailwind-logo.webp" alt="TailwindCSS" class="h-10"></div>
+      <div class="bg-gray-800 p-6 rounded-xl flex items-center justify-center w-24 h-24 shadow-lg"><img src="images/next.js-logo.png" alt="NextJS" class="h-10"></div>
+      <div class="bg-gray-800 p-6 rounded-xl flex items-center justify-center w-24 h-24 shadow-lg"><img src="images/github-logo.png" alt="GitHub" class="h-10"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <section class="py-20 px-6 bg-gray-50 dark:bg-gray-700">
-  <div class="max-w-4xl mx-auto text-center">
-    <h3 class="text-3xl font-semibold text-indigo-600 dark:text-pink-400 mb-8">What Users Say</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-        <p class="italic">"Envoyr completely changed how we handle document tracking. It's seamless, fast, and reliable!"</p>
-        <div class="mt-4 text-right font-semibold text-indigo-600 dark:text-pink-400">– Jordan C., Registrar</div>
-      </div>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
-        <p class="italic">"The QR code feature is a game changer. We can now locate files instantly!"</p>
-        <div class="mt-4 text-right font-semibold text-indigo-600 dark:text-pink-400">– Aimee R., Admin Staff</div>
-      </div>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-center py-6">
+    <p class="text-sm text-gray-400">&copy; 2025 Envoyr. All rights reserved.</p>
+    <div class="flex justify-center gap-4 mt-3 text-primary">
+      <a href="#"><i class="fab fa-facebook-f hover:text-white"></i></a>
+      <a href="#"><i class="fab fa-twitter hover:text-white"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in hover:text-white"></i></a>
     </div>
-  </div>
-</section>
-
-  <section class="relative bg-cover bg-center bg-no-repeat py-24 px-6" style="background-image: url('https://images.unsplash.com/photo-1581090700227-1e8e9dc88007?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
-  <div class="bg-gray-50 dark:bg-gray-800 bg-opacity-90 rounded-xl max-w-4xl mx-auto text-center p-10 text-black-700">
-    <h3 class="text-3xl font-bold mb-4">Ready to Streamline Your Workflow?</h3>
-    <p class="text-lg mb-6">Try Envoyr today and experience efficient document tracking like never before.</p>
-    <a href="#contact" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded shadow transition">Get Started</a>
-  </div>
-</section>
-
-  <footer class="text-center p-6 mt-12 dark:bg-gray-900 bg-indigo-100 text-black dark:text-white">
-  <p>&copy; 2025 Envoyr. All rights reserved.</p>
-  <div class="flex justify-center space-x-4 mt-3">
-    <a href="#" class="hover:text-yellow-300"><i class="fab fa-facebook-f"></i></a>
-    <a href="#" class="hover:text-yellow-300"><i class="fab fa-twitter"></i></a>
-    <a href="#" class="hover:text-yellow-300"><i class="fab fa-linkedin-in"></i></a>
-  </div>
-</footer>
+  </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -256,7 +276,6 @@
       updateToggleIcon();
 
       window.toggleLightMode = function () {
-        const html = document.documentElement;
         const isDark = html.classList.contains('dark');
 
         if (isDark) {
@@ -276,6 +295,7 @@
         const icon = document.getElementById('theme-icon');
         const isDark = document.documentElement.classList.contains('dark');
         icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        icon.title = isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode';
       }
     });
   </script>
